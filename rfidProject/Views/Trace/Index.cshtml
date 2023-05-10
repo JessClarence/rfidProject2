@@ -1,0 +1,22 @@
+﻿@if (ViewBag.NotFound != null)
+{
+    <p>@ViewBag.NotFound</p>
+}
+
+
+<h1>Enter your code number:</h1>
+<p>Or scan your tag using the RFID reader</p>
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label mt-4">Code Number (e.g. 1421274911)</label>
+        <div class="row">
+            <div class="col-sm-8">
+                <input class="form-control" id="exampleInputEmail1" name="search" aria-describedby="emailHelp" placeholder="Enter code">
+            </div>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+        <small id="emailHelp" class="form-text text-muted">*Note: this may take a while to process</small>
+    </div>
+</form>

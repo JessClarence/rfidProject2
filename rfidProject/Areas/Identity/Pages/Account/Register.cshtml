@@ -1,0 +1,173 @@
+﻿@page
+@using rfidProject.Data.Enum;
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <label>
+                <input type="radio" name="radio-buttons" value="producer">
+                Producer
+            </label>
+
+            <label>
+                <input type="radio" name="radio-buttons" value="slaughterhouse">
+                Slaughterhouse
+            </label>
+
+            @*Producer*@
+            <div id="producer-fields" style="display:none">
+                <div class="form-floating" >
+                    <input asp-for="Input.Producer.OwnerName" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.Producer.OwnerName"></label>
+                    <span asp-validation-for="Input.Producer.OwnerName" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Producer.FarmName" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.Producer.FarmName"></label>
+                    <span asp-validation-for="Input.Producer.FarmName" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <label asp-for="Input.Producer.FarmLocation">FarmLocation</label>
+                    <select asp-for="Input.Producer.FarmLocation" class="form-control">
+                        <option>Bangkal</option>
+                        <option>Bunawan</option>
+                        <option>Calinan</option>
+                        <option>Carmen</option>
+                        <option>Maa</option>
+                        <option>Matina</option>
+                        <option>Panacan</option>
+                        <option>Puan</option>
+                        <option>Talomo</option>
+                        <option>Tibungco</option>
+                        <option>Toril</option>
+                        <option>Ulas</option>
+                    </select>
+                    <span asp-validation-for="Input.Producer.FarmLocation" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Producer.Description" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.Producer.Description"></label>
+                    <span asp-validation-for="Input.Producer.Description" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Producer.ContactInfo" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.Producer.ContactInfo"></label>
+                    <span asp-validation-for="Input.Producer.ContactInfo" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Producer.Image" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.Producer.Image"></label>
+                    <span asp-validation-for="Input.Producer.Image" class="text-danger"></span>
+                </div>
+            </div>
+
+            @*SlaughterHouse*@
+            <div id="slaughterhouse-fields" style="display:none">
+                <div class="form-floating">
+                    <input asp-for="Input.SlaughterHouse.AccreditationRate" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.SlaughterHouse.AccreditationRate"></label>
+                    <span asp-validation-for="Input.SlaughterHouse.AccreditationRate" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.SlaughterHouse.Location" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.SlaughterHouse.Location"></label>
+                    <span asp-validation-for="Input.SlaughterHouse.Location" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.SlaughterHouse.Description" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.SlaughterHouse.Description"></label>
+                    <span asp-validation-for="Input.SlaughterHouse.Description" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.SlaughterHouse.ContactInfo" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.SlaughterHouse.ContactInfo"></label>
+                    <span asp-validation-for="Input.SlaughterHouse.ContactInfo" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.SlaughterHouse.Image" class="form-control" autocomplete="new-information" aria-required="true" />
+                    <label asp-for="Input.SlaughterHouse.Image"></label>
+                    <span asp-validation-for="Input.SlaughterHouse.Image" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+<script>
+    const producerFields = document.querySelector('#producer-fields');
+    const slaughterhouseFields = document.querySelector('#slaughterhouse-fields');
+
+    const radioButtons = document.querySelectorAll('input[name="radio-buttons"]');
+    radioButtons.forEach(function (radioButton) {
+        radioButton.addEventListener('change', function () {
+            if (radioButton.value === 'producer') {
+                producerFields.style.display = 'block';
+                slaughterhouseFields.style.display = 'none';
+            } else if (radioButton.value === 'slaughterhouse') {
+                producerFields.style.display = 'none';
+                slaughterhouseFields.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

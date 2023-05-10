@@ -1,0 +1,32 @@
+﻿@model ICollection<CattleReg>
+
+<div class="text-center">
+    <h1 class="display-4">Cattle Register list</h1>
+    @if (@Model != null && @Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Rfid</th>
+                    <th scope="col">Breed</th>
+                    <th scope="col">RegWeight</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    
+                        <tr>
+                            <th scope="row">@user.Rfid</th>
+                            <td>@user.Breed</td>
+                            <td>@user.RegWeight</td>
+                        </tr>
+                    
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div class="text-center">
+</div>

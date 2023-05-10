@@ -1,0 +1,39 @@
+﻿@model ICollection<AppUser>
+
+<div class="text-center">
+    <h1 class="display-4">Producers</h1>
+    @if (@Model != null && @Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FarmLocation</th>
+                    <th scope="col">OwnerName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    @if (@user.Producer.FarmName != null)
+                    {
+                        <tr>
+                            <th scope="row">@user.Id</th>
+                            <td>@user.Producer.FarmLocation</td>
+                            <td>@user.Producer.OwnerName</td>
+                            <td>@user.Email</td>
+                            <td>
+                                <a asp-controller="ListOfProducer" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div class="text-center">
+</div>

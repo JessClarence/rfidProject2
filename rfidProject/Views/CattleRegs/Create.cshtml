@@ -1,0 +1,81 @@
+﻿@using rfidProject.Data.Enum;
+@model rfidProject.Models.CattleReg
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CattleReg</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RegWeight" class="control-label"></label>
+                <input asp-for="RegWeight" class="form-control" />
+                <span asp-validation-for="RegWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" class="form-control" asp-items="@Html.GetEnumSelectList<Gender>()">
+                    <option>--Select--</option>
+                </select>
+
+
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Breed" class="control-label"></label>
+                <select asp-for="Breed" class="form-control" asp-items="@Html.GetEnumSelectList<Breed>()">
+                    <option>--Select--</option>
+                </select>
+                <span asp-validation-for="Breed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HealthStatus" class="control-label"></label>
+                <select asp-for="HealthStatus" class="form-control" asp-items="@Html.GetEnumSelectList<HealthStatus>()">
+                    <option>--Select--</option>
+
+                </select>
+                <span asp-validation-for="HealthStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProducerId" class="control-label"></label>
+                <select asp-for="ProducerId" class ="form-control" asp-items="ViewBag.ProducerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlaughterHouseId" class="control-label"></label>
+                <select asp-for="SlaughterHouseId" class ="form-control" asp-items="ViewBag.SlaughterHouseId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rfid" class="control-label"></label>
+                <input asp-for="Rfid" class="form-control" value="@Model.Rfid" />
+                <span asp-validation-for="Rfid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
