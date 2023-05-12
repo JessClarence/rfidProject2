@@ -5,11 +5,11 @@ using rfidProject.Models;
 
 namespace rfidProject.Repositories
 {
-    public class CattleSlaughtered : ICattleSlaughtered
+    public class ProducerCattle : IProducerCattle
     {
         private readonly rfidProjectContext _context;
 
-        public CattleSlaughtered(rfidProjectContext context)
+        public ProducerCattle(rfidProjectContext context)
         {
             _context = context;
         }

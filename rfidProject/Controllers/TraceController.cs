@@ -9,7 +9,7 @@ namespace rfidProject.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public TraceController(IUnitOfWork unitOfWork) 
+        public TraceController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -31,6 +31,20 @@ namespace rfidProject.Controllers
             var result = _unitOfWork.Cattle.GetCattleInfo(id);
             return View(result);
         }
-        
+
+        public IActionResult GetNewData()
+        {
+            var latestCattle = _unitOfWork.Rfid.GetLatestRfid();
+            if (latestCattle != null)
+            {
+                return Json(new { codeNumber = latestCattle.cardid });
+            }
+            return Json(new { codeNumber = "" });
+        }
+
+        public IActionResult Feedback()
+        {
+            return View();
+        }
     }
 }

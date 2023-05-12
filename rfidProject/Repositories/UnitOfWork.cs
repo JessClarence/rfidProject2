@@ -10,11 +10,13 @@ namespace rfidProject.Repositories
 
         public ICattleRepository Cattle { get; }
 
+        public ISlaughteredCattle SlaughteredCattle { get; }
+
         public IRfidRepository Rfid { get; }
 
         public IRoleRepository Role { get; }
 
-        public ICattleSlaughtered CattleSlaughtered { get; }
+        public IProducerCattle CattleSlaughtered { get; }
 
         public UnitOfWork(
             IUserRepository user, 
@@ -22,7 +24,8 @@ namespace rfidProject.Repositories
             IRoleRepository role, 
             IRfidRepository rfid, 
             ICattleRepository cattle,
-            ICattleSlaughtered cattleSlaughtered)
+            IProducerCattle cattleSlaughtered,
+            ISlaughteredCattle slaughteredCattle)
         {
             User = user;
             Slaughter = slaughter;
@@ -30,6 +33,7 @@ namespace rfidProject.Repositories
             Rfid = rfid;
             Cattle = cattle;
             CattleSlaughtered = cattleSlaughtered;
+            SlaughteredCattle = slaughteredCattle;
         }
     }
 }

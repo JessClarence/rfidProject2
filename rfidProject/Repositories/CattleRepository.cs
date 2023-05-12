@@ -22,12 +22,24 @@ namespace rfidProject.Repositories
                 .FirstOrDefault(u => u.Rfid  == id);
         }
 
+        public CattleReg GetCattleInfoForSlaughter(int id)
+        {
+            return _context.CattleRegs
+                .Include(u => u.Producer)
+                .Include(u => u.SlaughterHouse)
+                .FirstOrDefault(u => u.Id == id);
+        }
+
         public ICollection<CattleReg> GetCattles()
         {
             return _context.CattleRegs
+                .Where(r => !_context.SlaughterCattles.Any(c => c.CattleReg.Id == r.Id))
                 .Include(u => u.Producer)      
                 .Include(u => u.SlaughterHouse)
                 .ToList();
         }
+
+        
+
     }
 }

@@ -4,19 +4,98 @@
 }
 
 
-<h1>Enter your code number:</h1>
-<p>Or scan your tag using the RFID reader</p>
-<form asp-action="Index" method="get">
-    <div class="form-group">
-        <label for="exampleInputEmail1" class="form-label mt-4">Code Number (e.g. 1421274911)</label>
-        <div class="row">
-            <div class="col-sm-8">
-                <input class="form-control" id="exampleInputEmail1" name="search" aria-describedby="emailHelp" placeholder="Enter code">
+<!-- Link to BoxIcons -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="~/css/scanrfid.css">
+
+
+
+    <!-- Other Info -->
+    <section class="trace" id="trace">
+
+        <div class="heading">
+            <span>Input Unique Cattle IDs</span>
+            <h1>Trace your Meat Now</h1>
+        </div>
+        <div class="container">
+            <div class="trace-img">
+                <img src="~/Images/LocationProducer.png" alt="">
             </div>
-            <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary">Go</button>
+            <div class="trace-text">
+                <h2>Enter Your Code Number</h2>
+                <p>Cattle profiling collects and stores individual cattle information to ensure meat traceability throughout the supply chain. To manually input data, use the search bar. Below it, you'll find a dedicated button for scanning RFIDs. Use this button to retrieve the unique identification code.</p>
+                <form asp-action="Index" method="get">
+                <div class="trace-box">
+                    <input type="text" placeholder="Trace" name="search" class="trans-text">
+                    <button type="submit" target="_blank" style="background-color: transparent; border:none">
+                        <i class='bx bx-search'></i>
+                    </button>
+                </div>
+                </form>
+            <form asp-action="Index" method="get">
+                <input class="form-control" id="exampleInputEmail1" name="search" aria-describedby="emailHelp" placeholder="Example Code" readonly>
+                <button class="show-modal">Scan RFID</button>
+            </form>
             </div>
         </div>
-        <small id="emailHelp" class="form-text text-muted">*Note: this may take a while to process</small>
-    </div>
-</form>
+
+    </section>
+
+
+@*
+
+<div class="container mt-5">
+    <p class="mt-3 mb-3">Or scan your tag using the RFID reader Here</p>
+
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-8">
+                    <input class="form-control" id="exampleInputEmail1" name="search" aria-describedby="emailHelp" placeholder="Example Code" readonly>
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">SCAN</button>
+                </div>
+            </div>
+            <small id="emailHelp" class="form-text text-muted">*Note: read here</small>
+        </div>
+    </form>
+</div>*@
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        setInterval(function () {
+            $.ajax({
+                url: '@Url.Action("GetNewData", "Trace")',
+                type: "GET",
+                dataType: 'json',
+                success: function (result) {
+                    if (result.codeNumber) {
+                        $("#exampleInputEmail1").val(result.codeNumber);
+                    }
+                }
+            });
+        }, 2000);
+    });
+
+    //const section = document.querySelector("section"),
+    //    overlay = document.querySelector(".overlay"),
+    //    showBtn = document.querySelector(".show-modal"),
+    //    closeBtn = document.querySelector(".close-btn");
+    //showBtn.addEventListener("click", () => section.classList.add("active"));
+    //overlay.addEventListener("click", () =>
+    //    section.classList.remove("active")
+    //);
+    //closeBtn.addEventListener("click", () =>
+    //    section.classList.remove("active")
+    //);
+
+
+</script>

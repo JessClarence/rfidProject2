@@ -6,7 +6,9 @@
 
         ISlaughterRepository Slaughter { get; }
 
-        ICattleSlaughtered CattleSlaughtered { get; }
+        ISlaughteredCattle SlaughteredCattle { get; }
+
+        IProducerCattle CattleSlaughtered { get; }
 
         ICattleRepository Cattle { get; }
 

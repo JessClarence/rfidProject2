@@ -4,6 +4,7 @@ using rfidProject.Models;
 
 namespace rfidProject.Repositories
 {
+
     public class RfidRepository : IRfidRepository
     {
         private readonly rfidProjectContext _context;
@@ -11,12 +12,16 @@ namespace rfidProject.Repositories
             _context = context;
         }
 
+        public Rfid GetLatestRfid()
+        {
+            return _context.Rfids.OrderByDescending(c => c.Id).FirstOrDefault();
+        }
+
         public string GetRfids()
         {
+            var usedRfids = _context.CattleRegs.Select(c => c.Rfid).ToList();
             var unusedRfid = _context.Rfids
-        .Where(r => !_context.CattleRegs.Any(c => c.Rfid == r.cardid))
-        .OrderBy(u => u.Id)
-        .LastOrDefault();
+                .FirstOrDefault(r => !usedRfids.Contains(r.cardid));
 
             return unusedRfid?.cardid;
         }

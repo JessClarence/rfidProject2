@@ -1,0 +1,383 @@
+﻿/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-padding-top: 2rem;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --main-color: #008148;
+    --second-color: #1e3932;
+}
+
+section .trace {
+    margin-top: 70px;
+    padding: 50px 10%;
+}
+
+
+*::selection {
+    color: #fff;
+    background: var(--main-color);
+}
+
+img {
+    width: 100%;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    box-shadow: 0 4px 41px rgb(14 55 54 / 14%);
+    padding: 15px 10%;
+    transition: 0.2s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.smfa {
+    font-weight: 600;
+    color: var(--second-color);
+    margin-left: 5px;
+}
+
+.logo img {
+    width: 60px;
+}
+
+.navbar {
+    display: flex;
+}
+
+    .navbar a {
+        font-size: 1rem;
+        padding: 11px 20px;
+        color: var(--second-color);
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+        .navbar a:hover {
+            color: var(--main-color);
+        }
+
+#menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+}
+
+.btn {
+    padding: 7px 16px;
+    border: 2px solid var(--second-color);
+    border-radius: 40px;
+    color: var(--second-color);
+    font-weight: 500;
+}
+
+.btn-trace {
+    margin-top: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover {
+    color: #fff;
+    background: var(--second-color);
+}
+
+.heading {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+    .heading span {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--second-color);
+    }
+
+    .heading h1 {
+        font-size: 2rem;
+        color: var(--main-color)
+    }
+
+    .heading h2 {
+        color: var(--second-color);
+    }
+
+.box .btn {
+    border: 2px solid #ebdbc8;
+    color: #ebdbc8;
+}
+
+    .box .btn:hover {
+        background: #ebdbc8;
+        color: var(--second-color);
+    }
+
+
+
+.trace-box {
+    margin-top: 20px;
+    background-color: #eee;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 25px;
+}
+
+input {
+    width: 240px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+
+.container .bx-search:hover {
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.trace-img {
+    flex: 1 1 21rem;
+}
+
+.trace-text {
+    flex: 1 1 21rem;
+}
+
+    .trace-text h2 {
+        text-align: center;
+        font-size: 1.2 rem;
+        color: var(--second-color);
+    }
+
+    .trace-text p {
+        margin: 0.5rem 0 1rem;
+        text-align: justify;
+    }
+
+
+@media (max-width: 1150px) {
+    header {
+        padding: 18px 7%;
+    }
+
+    section {
+        padding: 50px 7%;
+    }
+}
+
+@media (max-width: 991px) {
+    header {
+        padding: 18px 4%;
+    }
+
+    section {
+        padding: 50px 4%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 11px 4%;
+    }
+
+        header .navbar {
+            position: absolute;
+            top: -500px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: 0 4px 4px rgb(14 55 54 / 14%);
+            border-top: 2px solid var(--main-color);
+            transition: 0.2s;
+            text-align: left;
+        }
+
+    .navbar.active {
+        top: 100%;
+    }
+
+    .navbar a {
+        padding: 1.5rem;
+        display: block;
+        color: var(--second-color);
+    }
+}
+
+@media (max-width: 768px) {
+    .heading h1 {
+        font-size: 1.5rem;
+    }
+
+    .heading span {
+        font-size: 0.9rem;
+    }
+
+    .about {
+        flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 364px) {
+    .links {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* CSS */
+
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+section.modal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #e3f2fd;
+}
+
+button {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    padding: 7px 16px;
+    border: 2px solid var(--second-color);
+    color: var(--second-color);
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+    button:hover {
+        color: #fff;
+        background: var(--second-color);
+    }
+
+    button.show-modal {
+        white-space: nowrap;
+        position: relative;
+        display: inline-block;
+        margin: 40px auto auto 250px;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+.modal-box {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+section.active .show-modal {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+}
+
+section.active .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 380px;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 24px;
+    background-color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) scale(1.2);
+    
+}
+
+section.active .modal-box {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-box i {
+    font-size: 70px;
+    color: var(--main-color);
+}
+
+.modal-box h2 {
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #333;
+}
+
+.modal-box h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+}
+
+.modal-box .buttons {
+    margin-top: 25px;
+}
+
+.modal-box button {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin: 0 10px;
+}

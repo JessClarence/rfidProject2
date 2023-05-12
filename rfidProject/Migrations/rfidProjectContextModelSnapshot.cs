@@ -322,6 +322,9 @@ namespace rfidProject.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<int>("CattleRegId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateSlaughtered")
                         .HasColumnType("datetime(6)");
 
@@ -334,6 +337,8 @@ namespace rfidProject.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CattleRegId");
+
                     b.ToTable("SlaughterCattles");
                 });
 
@@ -343,8 +348,8 @@ namespace rfidProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AccreditationRate")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("AccreditationRate")
+                        .HasColumnType("int");
 
                     b.Property<string>("ContactInfo")
                         .HasColumnType("longtext");
@@ -442,6 +447,17 @@ namespace rfidProject.Migrations
                     b.Navigation("Producer");
 
                     b.Navigation("SlaughterHouse");
+                });
+
+            modelBuilder.Entity("rfidProject.Models.SlaughterCattle", b =>
+                {
+                    b.HasOne("rfidProject.Models.CattleReg", "CattleReg")
+                        .WithMany()
+                        .HasForeignKey("CattleRegId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CattleReg");
                 });
 #pragma warning restore 612, 618
         }
