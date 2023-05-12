@@ -4,10 +4,11 @@
     {
         Carabao,
         HolsteinFriesian,
-        Simmental,
+        //Simmental,
         BrownSwiss,
-        Angus,
+        //Angus,
         Brahman,
-        Others
+        PhilippineGoat
+        //Others
     }
 }

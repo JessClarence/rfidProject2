@@ -1,90 +1,179 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<div>
-<div id="landingpage">
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="m-5">
-            <h1>Safe Meat For All!</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
-            <a type="button" class="btn btn-primary" asp-controller="Trace" asp-action="Index">Try Tracing</a>
+﻿
+
+<link rel="stylesheet" href="~/css/landingPage.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+
+<header>
+    <div class="bx bx-menu" id="menu-icon"></div>
+    <a  class="logo mb-3"><img src="~/Images/logo.png" alt=""><span class="smfa">SMFA</span></a>
+    <ul class="navbar" style="padding-bottom: 0px; padding-top: 0px;">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#trace">Trace</a></li>
+        <li><a href="#producer">Producers</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contacts</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+
+    </ul>
+</header>
+
+<!-- Home -->
+<section class="home" id="home">
+    <div class="home-text">
+        <span>Welcome To</span>
+        <h1> Safe Meat For All </h1>
+        <h2>Take control of your meat consumption with traceability - ensure your meat is ethical, sustainable, and delicious.</h2>
+        <a href="#" class="btn">Trace Now</a>
+    </div>
+    <div class="home-img">
+        <a>
+        <img src="~/Images/home.png" alt="">
+        </a>
+    </div>
+</section>
+
+<section class="breedsection" id="breedsection">
+    <div class="heading">
+        <span> Philippine Cattles</span>
+        <h1>Cattle Breeds</h1>
+    </div>
+    <div class="breedsection-container">
+        <div class="box">
+            <div class="box-img">
+                <img src="~/Images/Breed1.png" alt="">
+            </div>
+            <h2>American Brahman</h2>
+            <span>A breed of beef cattle that originated in the United States. It is known for its strength, endurance, and adaptability to hot climates.</span>
+            <a href="#" class="btn">View Info</a>
         </div>
-        <div class="mx-5">
-            <img src="~/Images/a cow.png" alt="a cow" width="600" height="600" />
+
+        <div class="box">
+            <div class="box-img">
+                <img src="~/Images/Breed2.png" alt="">
+            </div>
+            <h2>Brown Swiss</h2>
+            <span>A dairy cattle breed that originated in Switzerland. They are known for their docile temperament, longevity, and high milk production.</span>
+            <a href="#" class="btn">View Info</a>
+        </div>
+
+        <div class="box">
+            <div class="box-img">
+                <img src="~/Images/Breed3.png" alt="">
+            </div>
+            <h2>Carabao</h2>
+            <span>A type of water buffalo that is native to the Philippines. They are used for draft work, meat, and milk production.</span>
+            <a href="#" class="btn">View Info</a>
+        </div>
+
+        <div class="box">
+            <div class="box-img">
+                <img src="~/Images/Breed4.png" alt="">
+            </div>
+            <h2>Holstein Friesian</h2>
+            <span>A breed of dairy cattle that originated in the Netherlands. They are known for their high milk production and black-and-white markings.</span>
+            <a href="#" class="btn">View Info</a>
+        </div>
+
+        <div class="box">
+            <div class="box-img">
+                <img src="~/Images/Breed5.png" alt="">
+            </div>
+            <h2>Philippine Goat</h2>
+            <span>The Philippine Goat, also known as the native goat, is a common breed found throughout the Philippines. They are primarily raised for their meat, although some are also kept for milk production.</span>
+            <a href="#" class="btn">View Info</a>
         </div>
     </div>
-</div>
+</section>
 
 
-<div style="margin-top: 300px" id="directories">
-    <div class="mb-5">
-        <h1>Featured Directories</h1>
-        <a src="#">View more...</a>
+
+<!-- Other Info -->
+<section class="trace" id="trace">
+    <div class="heading">
+        <span>Input Unique Cattle IDs</span>
+        <h1>Trace your Meat Now</h1>
     </div>
-
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <img src="https://picsum.photos/300/200" alt="image" class="img-fluid">
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://picsum.photos/300/200" alt="image" class="img-fluid">
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://picsum.photos/300/200" alt="image" class="img-fluid">
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://picsum.photos/300/200" alt="image" class="img-fluid">
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://picsum.photos/300/200" alt="image" class="img-fluid">
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://picsum.photos/300/200" alt="image" class="img-fluid">
-            </div>
+        <div class="trace-img">
+            <img src="~/Images/LocationProducer.png" alt="">
+        </div>
+        <div class="trace-text">
+            <h2>Enter Your Code Number:</h2>
+            <p>Cattle profiling collects and stores individual cattle information for traceability of meat throughout the supply chain.  </p>
+            <p>The animal's profile includes birth details, weight, gender, health status, farm name, location, contact information, and updated delivery information, which can be accessed via a code-based system.</p>
+            <form asp-action="Index" method="get">
+                <div class="trace-box">
+                    <input type="text" placeholder="Trace" name="search" class="trans-text">
+                    <button type="submit" target="_blank" style="background-color: transparent; border:none">
+                        <i class='bx bx-search'></i>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-
-</div>
-
-<div id="rfidProjectContexts" style="margin-top: 200px" class="text-center">
-    <h1 class="mb-4">Registrations Are Available Here!</h1>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card pt-lg-5">
-                <div class="card-body text-xl-center p-4 ">
-                    <img src="~/Images/customer.png" alt="rfidProjectContext" width="200" height="200" />
-                    <h5 class="card-title">rfidProjectContext</h5>
-                    <p class="card-text">Sign here to register</p>
-                    <a href="#" class="btn btn-primary">Sign Up</a>
-                </div>
-            </div>
+</section>
+<section class="producer" id="producer">
+    <div class="heading">
+        <span>Our Farms</span>
+        <h1>Proucers Directory</h1>
+    </div>
+    <div class="container">
+        <div class="producer-text">
+            <h2>Producers/Farm Information</h2>
+            <p>Filipino cattle producers can now register on this website to create profiles for their cattle, including brief descriptions of their farms, operating procedures, and contact details for greater transparency and communication with consumers.</p>
+            <p>By providing consumers with access to this information, the website aims to promote ethical and sustainable practices in the Filipino meat industry.</p>
+            <a href="#" class="btn">Locate Your Producers</a>
         </div>
-        <div class="col-sm-6">
-            <div class="card pt-lg-5">
-                <div class="card-body text-xl-center p-4">
-                    <img src="~/Images/meat.png" alt="Slaughter house" width="200" height="200"/>
-                    <h5 class="card-title">Slaughter House</h5>
-                    <p class="card-text">Sign here to register</p>
-                    <a href="#" class="btn btn-primary">Sign Up</a>
-                </div>
-            </div>
+
+        <div class="producer-img">
+            <img src="~/Images/ProducersImage.png" alt="">
         </div>
     </div>
-</div>
+</section>
+<!-- About -->
+<section class="about" id="about">
+    <div class="about-img">
+        <img src="~/Images/about.png" alt="">
+    </div>
+    <div class="about-text">
+        <h2>About Us</h2>
+        <p>At our website, we take pride in providing detailed information about the cattle that produce the meat on your plate. Our team of experts is dedicated to gathering and sharing data about each animal's breed, age, diet, and living conditions.</p>
+        <p>We also prioritize meat traceability, meaning we can track each cut of meat from the farm to the table, ensuring the highest standards of food safety and quality. Join us in celebrating the unique story and flavor of each and every animal..</p>
+        <a href="#" class="btn">Learn More</a>
+    </div>
+</section>
+
+<!-- Contacts -->
+<section class="contact" id="contact">
+    <div class="social">
+        <a href="#"> <i class='bx bxl-facebook'></i></a>
+        <a href="#"> <i class='bx bxl-twitter'></i></a>
+        <a href="#"> <i class='bx bxl-instagram'></i></a>
+        <a href="#"> <i class='bx bxl-youtube'></i></a>
+    </div>
+    <div class="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Our Company</a>
+    </div>
+    <p>&#169; SMFA All Rights Reserved.</p>
+</section>
 
 
-<footer class="border-top footer text-muted text-xl-center">
-        <div class="container mt-xxl-5">
-            &copy; 2023 - rfidProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-</footer>
 
-</div>
+<script>
+    let menu = document.querySelector('#menu-icon');
+    let navbar = document.querySelector('.navbar');
 
+    menu.onclick = () => {
+        menu.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+    }
+
+    window.onscroll = () => {
+        menu.classList.remove('bx-x');
+        navbar.classList.remove('active');
+    }
+</script>

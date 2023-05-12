@@ -5,6 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -18,6 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using rfidProject.Core.IRepositories;
+using rfidProject.Core.ViewModel;
 using rfidProject.Data.Enum;
 using rfidProject.Models;
 
@@ -31,13 +35,15 @@ namespace rfidProject.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<AppUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IPhotoService _photoService;
 
         public RegisterModel(
             UserManager<AppUser> userManager,
             IUserStore<AppUser> userStore,
             SignInManager<AppUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IPhotoService photoService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -45,6 +51,7 @@ namespace rfidProject.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _photoService = photoService;
         }
 
         /// <summary>
@@ -103,6 +110,9 @@ namespace rfidProject.Areas.Identity.Pages.Account
             public SlaughterHouse SlaughterHouse { get; set; }
 
             public Producer Producer { get; set; }
+
+            public string Image { get; set; } = "no image";
+            public virtual IFormFile? ImageFile { get; set; }
         }
 
 
@@ -125,15 +135,18 @@ namespace rfidProject.Areas.Identity.Pages.Account
                 user.SlaughterHouse.Location = Input.SlaughterHouse.Location;
                 user.SlaughterHouse.Description = Input.SlaughterHouse.Description;
                 user.SlaughterHouse.ContactInfo = Input.SlaughterHouse.ContactInfo;
-                user.SlaughterHouse.Image = Input.SlaughterHouse.Image;
                 //producer
-                user.Producer = new Producer();
-                user.Producer.OwnerName = Input.Producer.OwnerName;
-                user.Producer.FarmName = Input.Producer.FarmName;
-                user.Producer.FarmLocation = Input.Producer.FarmLocation ?? new FarmLocation(); ;
-                user.Producer.Description = Input.Producer.Description;
-                user.Producer.ContactInfo = Input.Producer.ContactInfo;
-                user.Producer.Image = Input.Producer.Image;
+                var results = Input.ImageFile != null ? await _photoService.AddPhotoAsync(Input.ImageFile) : null;
+                user.Producer = new Producer
+                {
+                    OwnerName = Input.Producer.OwnerName,
+                    FarmName = Input.Producer.FarmName,
+                    FarmLocation = Input.Producer.FarmLocation ?? new FarmLocation() ,
+                    Description = Input.Producer.Description,
+                    ContactInfo = Input.Producer.ContactInfo,
+                    Image = results?.Url.ToString()
+            };
+                
 
                 
 

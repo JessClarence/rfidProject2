@@ -7,5 +7,7 @@ namespace rfidProject.Core.IRepositories
         ICollection<Rfid> GetUsers();
 
         string GetRfids();
+
+        Rfid GetLatestRfid();
     }
 }

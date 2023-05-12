@@ -1,0 +1,102 @@
+﻿@using rfidProject.Core.ViewModel;
+@model CattleForSlaughterViewModel
+
+<div class="container mt-5">
+    <table id="sourceTable">
+        <thead>
+            <tr>
+                <th>Breed</th>
+                <th>RFID</th>
+                <th>Farm Name</th>
+                <th>Farm Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.cattleRegs)
+            {
+                <tr>
+                    <td>@item.Breed</td>
+                    <td>@item.Rfid</td>
+                    <td>@item.Producer.FarmName</td>
+                    <td>@item.Producer.FarmLocation</td>
+                    <td>
+                        <button type="button" class="btn btn-primary move-to-destination" data-cattlereg-id="@item.Id">Slaughter</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*<table id="destinationTable">
+    <thead>
+        <tr>
+            <th>Breed</th>
+            <th>RFID</th>
+            <th>Farm Name</th>
+            <th>Farm Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.slaughters)
+        {
+            <tr>
+                <td>@item.CattleReg.Breed</td>
+                <td>@item.CattleReg.Rfid</td>
+                <td>@item.CattleReg.Producer.FarmName</td>
+                <td>@item.CattleReg.Producer.FarmLocation</td>
+                <td>
+                    <button type="button" class="btn btn-danger delete-row" data-id="@item.CattleReg.Id">Delete</button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+
+<script>
+    $(document).ready(function () {
+        $('.move-to-destination').click(function () {
+            var cattleRegId = $(this).data('cattlereg-id');
+            $.ajax({
+                type: 'POST',
+                url: '/SlaughterCattles/AddCattleRegToSlaughterCattle',
+                data: { cattleRegId: cattleRegId },
+                success: function (data) {
+                    // Reload the destination table
+                    $('#destinationTable tbody').load('/SlaughterCattles/GetSlaughterCattles');
+
+                    // Remove the row from the source table
+                    $('#sourceTable tbody tr').each(function () {
+                        if ($(this).find('.move-to-destination').data('cattlereg-id') == cattleRegId) {
+                            $(this).remove();
+                        }
+                    });
+                }
+            });
+        });
+        //$(document).on('click', '.delete-row', function () {
+        //    var r = confirm("Are you sure you want to delete this record?");
+        //    if (r == true) {
+        //        var id = $(this).data('id');
+        //        var row = $(this).closest('tr');
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/SlaughterCattles/DeleteSlaughterCattle',
+        //            data: {
+        //                id: id
+        //            },
+        //            success: function () {
+        //                row.remove();
+        //            },
+        //            error: function (xhr, textStatus, errorThrown) {
+        //                alert('Error: ' + xhr.responseText);
+        //            }
+        //        });
+        //    }
+        //});
+    });
+</script>
+

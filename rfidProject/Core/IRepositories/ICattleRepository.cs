@@ -6,5 +6,6 @@ namespace rfidProject.Core.IRepositories
     {
         ICollection<CattleReg> GetCattles();
         CattleReg GetCattleInfo(string id);
+        CattleReg GetCattleInfoForSlaughter(int id);
     }
 }

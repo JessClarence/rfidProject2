@@ -2,7 +2,7 @@
 
 namespace rfidProject.Core.IRepositories
 {
-    public interface ICattleSlaughtered
+    public interface IProducerCattle
     {
         ICollection<CattleReg> GetCattles();
 

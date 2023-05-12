@@ -1,45 +1,30 @@
 ﻿@model AppUser
+<link rel="stylesheet" href="~/css/producer.css">
 
 
-<div>
-    <h4>Producer Info:</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer.OwnerName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Producer.OwnerName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer.FarmName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Producer.FarmName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer.FarmLocation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Producer.FarmLocation)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Producer.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer.ContactInfo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Producer.ContactInfo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer.Image)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Producer.Image)
-        </dd>
-    </dl>
+
+
+<div class="container rounded bg-white mt-5 mb-5 py-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">@Model.Producer.FarmName</span><span class="text-black-50">@Model.Email</span><span> </span></div>
+        </div>
+        <div class="col-md-9 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Producer Profile</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Owner Name</label><input type="text" class="form-control" value="@Model.Producer.OwnerName" readonly></div>
+                    <div class="col-md-6"><label class="labels">Farm Name</label><input type="text" class="form-control" value="@Model.Producer.FarmName" readonly></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Farm Location</label><input type="text" class="form-control" value="@Model.Producer.FarmLocation" readonly></div>
+                    <div class="col-md-12"><label class="labels">Description</label><textarea class="form-control" cols="30" rows="10" readonly>@Model.Producer.Description</textarea></div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

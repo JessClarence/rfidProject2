@@ -93,7 +93,7 @@ namespace rfidProject.Controllers
 
 
             user.Producer.OwnerName = data.User.Producer.OwnerName;
-            user.Producer.FarmName = data.User.Producer.FarmName;
+            user.Producer.FarmLocation = data.User.Producer.FarmLocation;
 
             _unitOfWork.User.UpdateUser(user);
 

@@ -1,0 +1,97 @@
+﻿@model CattleReg
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/resultpage.css">
+
+
+<div class="result">
+    <div class="btn-box">
+        <button id="btn1" onclick="openCattleInfo()"><i class='bx bx-info-circle'></i>Cattle Info</button>
+        <button id="btn2" onclick="openProdInfo()"><i class='bx bx-face'></i>Producer</button>
+        <button id="btn3" onclick="openSlaugInfo()"><i class='bx bx-home-alt-2'></i>Slaughterhouse</button>
+    </div>
+    <div id="content1" class="content">
+        <div class="content-left" style="margin-left: 50px;">
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">RFID</label><input type="text" class="form-control" value="@Model.Rfid" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Weight</label><input type="text" class="form-control" value="@Model.RegWeight" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Gender</label><input type="text" class="form-control" value="@Model.Gender" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Birthdate</label><input type="text" class="form-control" value="@Model.BirthDate" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Breed</label><input type="text" class="form-control" value="@Model.Breed" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Age</label><input type="text" class="form-control" value="@Model.Age" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Health Status</label><input type="text" class="form-control" value="@Model.HealthStatus" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Producer</label><input type="text" class="form-control" value="@Model.Producer.FarmName" readonly></div>
+        </div>
+        <div class="content-right">
+            <img src="~/Images/Breed1.png" alt="">
+        </div>
+    </div>
+    <div id="content2" class="content">
+        <div class="content-left">
+            <h1 style="margin-bottom: 30px;">Adrianne Farm</h1>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Owner Name</label><input type="text" class="form-control" value="@Model.Producer.OwnerName" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Farm Name</label><input type="text" class="form-control" value="@Model.Producer.FarmName" readonly></div>
+            <div class="dispInfo"><label class="labels" style="margin: 0 0 3 5;">Farm Location</label><input type="text" class="form-control" value="@Model.Producer.FarmLocation" readonly></div>
+
+        </div>
+        <div class="content-right">
+            <img src="~/Images/Breed2.png" alt="">
+        </div>
+    </div>
+    <div id="content3" class="content">
+        <div class="content-left">
+            <h1 class="text-danger">Dead</h1>
+            @*<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi iure quibusdam ratione quis, et corporis non mollitia adipisci voluptatibus cumque, sint rerum saepe iusto velit quam nemo, fuga temporibus impedit vitae. Dolor excepturi unde, quos corrupti tempore ad, fugit, voluptatibus exercitationem distinctio cum reprehenderit voluptate veniam velit officiis incidunt quis.</p>*@
+        </div>
+        <div class="content-right">
+            <img src="~/Images/Breed3.png" alt="">
+        </div>
+    </div>
+</div>
+
+<script>
+    var content1 = document.getElementById("content1");
+    var content2 = document.getElementById("content2");
+    var content13 = document.getElementById("content3");
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var btn3 = document.getElementById("btn3");
+
+    function openCattleInfo() {
+        content1.style.transform = "translateX(0)";
+        content2.style.transform = "translateX(300%)";
+        content3.style.transform = "translateX(300%)";
+        btn1.style.color = "var(--main-color)";
+        btn2.style.color = "#000";
+        btn3.style.color = "#000";
+        content1.style.transitionDelay = "0.3s";
+        content2.style.transitionDelay = "0s";
+        content3.style.transitionDelay = "0s";
+
+    }
+
+    function openProdInfo() {
+        content1.style.transform = "translateX(300%)";
+        content2.style.transform = "translateX(0)";
+        content3.style.transform = "translateX(300%)";
+        btn1.style.color = "#000";
+        btn2.style.color = "var(--main-color)";
+        btn3.style.color = "#000";
+        content1.style.transitionDelay = "0s";
+        content2.style.transitionDelay = "0.3s";
+        content3.style.transitionDelay = "0s";
+    }
+
+    function openSlaugInfo() {
+        content1.style.transform = "translateX(300%)";
+        content2.style.transform = "translateX(300%)";
+        content3.style.transform = "translateX(0)";
+        btn1.style.color = "#000";
+        btn2.style.color = "#000";
+        btn3.style.color = "var(--main-color)";
+        content1.style.transitionDelay = "0s";
+        content2.style.transitionDelay = "0s";
+        content3.style.transitionDelay = "0.3s";
+    }
+</script>

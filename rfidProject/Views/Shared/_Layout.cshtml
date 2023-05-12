@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,84 +11,170 @@
     <link rel="stylesheet" href="~/rfidProject.styles.css" asp-append-version="true" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
+    
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                @if (!User.Identity.IsAuthenticated)
-                {
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/Images/logo.png" width="50" height="50" />
-                        SMFA
+
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <link rel="stylesheet" href="~/css/producer-nav.css">
+        <nav class="main-menu">
+                <div>
+                    <a href="#">
+                        <img src="~/Images/logo-white.png" alt="Safe Meat For All" class="logo">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                }
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-
-
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                        }
-                        else
-                        {
-                            @if (User.IsInRole("Administrator"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="CattleRegs" asp-action="Index">Cattle Registration</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ListOfProducer" asp-action="Index">Producer's List</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ListOfSlaughterHouse" asp-action="Index">SH List</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Rfid" asp-action="Index">Rfid</a>
-                                </li>
-                            }
-
-                            @if (User.IsInRole("Producer"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Producer" asp-action="Index">Producer</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Producer" asp-action="SlaughterCattle">Cattle List</a>
-                                </li>
-                            }
-                            @if (User.IsInRole("SlaughterHouse"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="SlaughterHouse" asp-action="Index">SlaughterHouse</a>
-                                </li>
-                            }
-                            
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Trace" asp-action="Index">Trace</a>
-                        </li>
-                    </ul>
                 </div>
-                <partial name="_LoginPartial" />
-            </div>
+          @if (User.IsInRole("Administrator"))
+          {
+                <ul>
+                    <li>
+                        <a asp-controller="Dashboard" asp-action="Index">
+                            <i class="bi bi-2x bi-bar-chart-line"></i>
+                            <span class="nav-text">
+                                Supply Dashboard
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-controller="CattleRegs" asp-action="Index">
+                            <i class="bi bi-2x bi-table"></i>
+                            <span class="nav-text">
+                                Supply Table
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-controller="CattleRegs" asp-action="Create">
+                            <i class="bi bi-2x bi-broadcast"></i>
+                            <span class="nav-text">
+                                Cattle Registration
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-controller="ListOfProducer" asp-action="Index">
+                            <i class="bi bi-2x bi-person-lines-fill"></i>
+                            <span class="nav-text">
+                                Producers List
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-controller="ListOfSlaughterHouse" asp-action="Index">
+                            <i class="bi bi-2x bi-buildings-fill"></i>
+                            <span class="nav-text">
+                                Slaughterhouse List
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-controller="Trace" asp-action="Index">
+                            <i class="bi bi-2x bi-search"></i>
+                            <span class="nav-text">
+                                Trace
+                            </span>
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+                
+          }
+
+           @if (User.IsInRole("Producer"))
+           {
+            
+
+            
+                <ul>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-controller="Producer" asp-action="Index">
+                            <i class="bi bi-2x bi-person-bounding-box"></i>
+                            <span class="nav-text">
+                                Producer Profile
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-controller="Producer" asp-action="SlaughterCattle">
+                            <i class="bi bi-2x bi-list-ul"></i>
+                            <span class="nav-text">
+                                Registered Cattle
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-controller="Trace" asp-action="Index">
+                            <i class="bi bi-2x bi-search"></i>
+                            <span class="nav-text">
+                                Trace
+                            </span>
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+               
+            
+
+
+           }
+           @if (User.IsInRole("SlaughterHouse"))
+           {
+                <ul>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-area="" asp-controller="SlaughterHouse" asp-action="Index">
+                            <i class="bi bi-2x bi-info-square-fill"></i>
+                            <span class="nav-text">
+                                Slaughterhouse Profile
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-controller="SlaughterCattles" asp-action="Index">
+                            <i class="bi bi-2x bi-card-checklist"></i>
+                            <span class="nav-text">
+                                Slaughter List
+                            </span>
+                        </a>
+
+                    </li>
+                    <li class="has-subnav">
+                        <a asp-area="" asp-controller="Trace" asp-action="Index">
+                            <i class="bi bi-2x bi-search"></i>
+                            <span class="nav-text">
+                                Trace
+                            </span>
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+                
+           }
+            <partial name="_LoginPartial" />
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+        
+                    
+    }
             @RenderBody()
-        </main>
-    </div>
 
     @*<footer class="border-top footer text-muted">
         <div class="container">
@@ -98,7 +186,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     
-
+    
 
     
     @await RenderSectionAsync("Scripts", required: false)

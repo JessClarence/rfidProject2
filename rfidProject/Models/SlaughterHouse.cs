@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using rfidProject.Data.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace rfidProject.Models
 {
@@ -6,7 +7,7 @@ namespace rfidProject.Models
     {
         [Key]
         public int Id { get; set; }
-        public string? AccreditationRate { get; set; }
+        public Accreditation? AccreditationRate { get; set; }
         public string? Location { get; set; }
         public string? Description { get; set; }
         public string? ContactInfo { get; set; }

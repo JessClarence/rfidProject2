@@ -1,14 +1,15 @@
 ﻿@model dynamic
+<div class="container" style="margin-left:300px">
+    <h2 class="mt-4">Chart</h2>
 
-<h2 class="mt-4">Chart</h2>
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-primary">FarmLocation</a>
+        <a href="@Url.Action("BreedChart")" class="btn btn-primary">Breed</a>
+    </div>
 
-<div>
-    <a href="@Url.Action("Index")" class="btn btn-primary">FarmLocation</a>
-    <a href="@Url.Action("BreedChart")" class="btn btn-primary">Breed</a>
+
+    <canvas id="barChart" class="mt-5" style="display: block; height: 500px;"></canvas>
 </div>
-
-<canvas id="barChart" class="mt-5"></canvas>
-
 
 
 <!-- Graphs -->

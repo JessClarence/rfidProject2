@@ -4,10 +4,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
+<div class="container">
 <h1>Edit</h1>
 
-<h4>CattleReg</h4>
+<h4>Cattle Registration</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,7 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="RegWeight" class="control-label"></label>
+                <label asp-for="Rfid" class="control-label"></label>
+                <input asp-for="Rfid" class="form-control" />
+                <span asp-validation-for="Rfid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Weight</label>
                 <input asp-for="RegWeight" class="form-control" />
                 <span asp-validation-for="RegWeight" class="text-danger"></span>
             </div>
@@ -29,7 +34,7 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BirthDate" class="control-label"></label>
+                <label class="control-label">Birthdate</label>
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
@@ -46,26 +51,19 @@
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HealthStatus" class="control-label"></label>
+                    <label  class="control-label">Health Status</label>
                 <select asp-for="HealthStatus" class="form-control" asp-items="@Html.GetEnumSelectList<HealthStatus>()">
                     <option>--Select--</option>
 
                 </select>
                 <span asp-validation-for="HealthStatus" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="ProducerId" class="control-label"></label>
+                <label  class="control-label">Farm Name</label>
                 <select asp-for="ProducerId" class="form-control" asp-items="ViewBag.ProducerId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="SlaughterHouseId" class="control-label"></label>
-                <select asp-for="SlaughterHouseId" class="form-control" asp-items="ViewBag.SlaughterHouseId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rfid" class="control-label"></label>
-                <input asp-for="Rfid" class="form-control" />
-                <span asp-validation-for="Rfid" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -75,6 +73,7 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
+</div>
 </div>
 
 @section Scripts {

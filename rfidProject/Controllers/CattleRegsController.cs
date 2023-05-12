@@ -26,7 +26,10 @@ namespace rfidProject.Controllers
         // GET: CattleRegs
         public async Task<IActionResult> Index()
         {
-            var rfidProjectContext = _context.CattleRegs.Include(c => c.Producer).Include(c => c.SlaughterHouse);
+            var rfidProjectContext = _context.CattleRegs
+                .Where(r => !_context.SlaughterCattles.Any(c => c.CattleReg.Id == r.Id))
+                .Include(c => c.Producer)
+                .Include(c => c.SlaughterHouse);
             return View(await rfidProjectContext.ToListAsync());
         }
 
@@ -53,10 +56,12 @@ namespace rfidProject.Controllers
         // GET: CattleRegs/Create
         public IActionResult Create()
         {
-            ViewData["ProducerId"] = new SelectList(_context.Producers, "Id", "FarmName");
+            var producers = _context.Producers.Where(p => p.FarmName != null);
+
+            ViewData["ProducerId"] = new SelectList(producers, "Id", "FarmName");
             ViewData["SlaughterHouseId"] = new SelectList(_context.SlaughterHouses, "Id", "Location");
-            var rfid = _unitOfWork.Rfid.GetRfids();
-            var cattleReg = new CattleReg { Rfid = rfid };
+            var rfid = _unitOfWork.Rfid.GetLatestRfid();
+            var cattleReg = new CattleReg { Rfid = rfid.cardid };
             return View(cattleReg);
         }
 
@@ -91,7 +96,8 @@ namespace rfidProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProducerId"] = new SelectList(_context.Producers, "Id", "FarmName", cattleReg.ProducerId);
+            var producers = _context.Producers.Where(p => p.FarmName != null);
+            ViewData["ProducerId"] = new SelectList(producers, "Id", "FarmName", cattleReg.ProducerId);
             ViewData["SlaughterHouseId"] = new SelectList(_context.SlaughterHouses, "Id", "Location", cattleReg.SlaughterHouseId);
             return View(cattleReg);
         }
@@ -128,7 +134,8 @@ namespace rfidProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProducerId"] = new SelectList(_context.Producers, "Id", "FarmName", cattleReg.ProducerId);
+            var producers = _context.Producers.Where(p => p.FarmName != null);
+            ViewData["ProducerId"] = new SelectList(producers, "Id", "FarmName", cattleReg.ProducerId);
             ViewData["SlaughterHouseId"] = new SelectList(_context.SlaughterHouses, "Id", "Location", cattleReg.SlaughterHouseId);
             return View(cattleReg);
         }

@@ -6,6 +6,8 @@ using rfidProject.Models;
 using rfidProject.Core.IRepositories;
 using rfidProject.Repositories;
 using rfidProject.Core;
+using rfidProject.Helpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'rfidProjectContextConnection' not found.");
@@ -13,7 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<rfidProjectContext>(options =>
     options.UseMySQL(connectionString));
 
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<rfidProjectContext>();
 
@@ -27,8 +29,7 @@ AddAuthorizationPolicies();
 AddScoped();
 
 #endregion
-
-
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 
 var app = builder.Build();
@@ -81,6 +82,8 @@ void AddScoped()
     builder.Services.AddScoped<IRoleRepository, RoleRepository>();
     builder.Services.AddScoped<IRfidRepository, RfidRepository>();
     builder.Services.AddScoped<ICattleRepository, CattleRepository>();
-    builder.Services.AddScoped<ICattleSlaughtered, CattleSlaughtered>();
+    builder.Services.AddScoped<IProducerCattle, ProducerCattle>();
+    builder.Services.AddScoped<ISlaughteredCattle, SlaughteredCattle>();
+    builder.Services.AddScoped<IPhotoService, PhotoService>();
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 }
