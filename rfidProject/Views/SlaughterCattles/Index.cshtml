@@ -28,32 +28,7 @@
         </tbody>
     </table>
 </div>
-@*<table id="destinationTable">
-    <thead>
-        <tr>
-            <th>Breed</th>
-            <th>RFID</th>
-            <th>Farm Name</th>
-            <th>Farm Location</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.slaughters)
-        {
-            <tr>
-                <td>@item.CattleReg.Breed</td>
-                <td>@item.CattleReg.Rfid</td>
-                <td>@item.CattleReg.Producer.FarmName</td>
-                <td>@item.CattleReg.Producer.FarmLocation</td>
-                <td>
-                    <button type="button" class="btn btn-danger delete-row" data-id="@item.CattleReg.Id">Delete</button>
 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>*@
 
 <script>
     $(document).ready(function () {
